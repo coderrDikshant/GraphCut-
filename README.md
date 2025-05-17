@@ -1,74 +1,118 @@
-# InteractiveGraphCut
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ 
+</head>
+<body>
 
-## Introduction
+  <h1> Graph-Based Foreground Extraction</h1>
 
-We implement a graph-cut based algorithm for object and background segmentation given prior seeds, which was proposed by Y. Boykov et al. We build this algorithm into a callable library with handy user interfaces, both static and dynamic linked libraries are provided.
+  <h2>Graph-Based Image Segmentation using Max-Flow/Min-Cut</h2>
 
-*InteractiveGraphCut* requires a prior input which labels a subset of pixels, as known as seeds. The algorithm will produce the mask of foreground object through these seeds. That's why the algorithm is called "interactive". The following illustration gives an intuition of how graph-cut works.
+  <p>This project implements <strong>interactive image segmentation</strong> using the <strong>Graph Cut</strong> method. The user provides an input image and a seed image where foreground (object) and background regions are manually marked. The program constructs a graph where each pixel is a node, applies a max-flow algorithm (Ford-Fulkerson), and segments the image into foreground and background using min-cut.</p>
 
-| Input | Output | Mask |
-|:--------------:|:--------------:|:--------------:|
-| ![Input](/showcases/input.jpg?raw=true) | ![Output](/showcases/output.jpg?raw=true) | ![Mask](/showcases/mask.jpg?raw=true)
+  <h4> Seed colors:</h4>
+  <ul>
+    <li><strong>Red</strong> pixels represent foreground seeds.</li>
+    <li><strong>Green</strong> pixels represent background seeds.</li>
+  </ul>
 
-The typical graph-cut is an energy optimization method. In this work,  we basically convert grided images into bidirected-connected graphs, and assign the weights to edges. These weights mainly indicate the coherence between two neighbor pixels. Then we add one source vertex and one sink vertex. All pixels will be connected with both terminals. These two terminals can be regarded as two labels, i.e. foreground and background. The weights of these links are computed by the prior input, indicating how likely each pixel can be labeled by each terminal. The segmentation problem is therefore converted into a graph-cut problem. We adopt Dinic algorithm to solve the max-flow.
+  <h3>📌 Introduction</h3>
 
-## Installation
+  <p>Image segmentation is a fundamental task in computer vision where the goal is to partition an image into meaningful regions. This project uses a graph-based approach where:</p>
+  <ul>
+    <li>Each pixel is a node.</li>
+    <li>Edges (with weights based on color similarity and user input) are drawn between neighboring pixels and between each pixel and two special nodes: <strong>Source</strong> (foreground) and <strong>Sink</strong> (background).</li>
+    <li>A <strong>max-flow/min-cut algorithm</strong> is applied to segment the image based on the minimum energy cost.</li>
+  </ul>
 
-Before configure and compile *InteractiveGraphCut*, you may need to setup the dependencies `OpenCV` first. Refer to [Installation for Windows](https://docs.opencv.org/3.4/d3/d52/tutorial_windows_install.html) or [Installation for Linux](https://docs.opencv.org/3.3.0/d7/d9f/tutorial_linux_install.html) for installation of `OpenCV`. `OpenCV` is required mainly for image I/O and  representation.
+  <h4>Key components:</h4>
+  <ul>
+    <li>Grayscale image conversion</li>
+    <li>Graph construction with T-links and N-links</li>
+    <li>Seed-based probabilistic modeling (Gaussian estimation)</li>
+    <li>Ford-Fulkerson or other max-flow algorithm variants for segmentation</li>
+    <li>Timing analysis of major steps</li>
+  </ul>
 
-You may note that, here are some convenient package manager which could help you install them directly. After configure these dependencies, you can clone this repository by the following command:
+  <h3>⚙️ How to Run This Project</h3>
 
-```
-git clone https://github.com/peihaowang/InteractiveGraphCut.git
-```
+  <h4>1. Install Dependencies</h4>
+  <p>You must have <strong>OpenCV</strong> installed on your system. It is used for image input/output, color space conversion, and drawing.</p>
 
-Afterward, run `CMake` to configure the solution and start to build the generated project. In unix-like systems, you can use the following commands to make it:
+  <p>Install OpenCV using:</p>
+  <ul>
+    <li><a href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html">OpenCV installation guide for Linux</a></li>
+    <li><a href="https://docs.opencv.org/master/d3/d52/tutorial_windows_install.html">OpenCV installation guide for Windows</a></li>
+  </ul>
 
-```
+  <h4>2. Clone the Repository</h4>
+  <pre><code>
+git clone https://github.com/tashir0605/Graph-Based-Foreground-Extraction
+cd Graph_Based_Image_Segmentation
+  </code></pre>
+
+  <h4>3. Build the Project</h4>
+  <pre><code>
 mkdir build && cd build
 cmake ..
 make -j8
 make install
-```
+  </code></pre>
 
-Here are some troubleshoots you may need to pay attention:
+  <h5>🛠️ Troubleshooting</h5>
+  <ul>
+    <li>If you get dependency errors during configuration, create a <code>3rdparty/lib</code> folder and place the required <code>.lib</code> or <code>.so</code> files there.</li>
+    <li>If configuration or compilation fails, try upgrading CMake or your compiler.</li>
+    <li>To change the default installation path, use:
+      <pre><code>cmake .. -DCMAKE_INSTALL_PREFIX=/your/custom/path</code></pre>
+    </li>
+  </ul>
 
-1. During configuring, dependency missing errors may occur, for `CMake` failes to find the installed library. The quickest solution is to create `3rdparty/lib` directory under the project folder and then copy the corresponding library files into it.
+  <h3>🚀 Usage</h3>
+  <p>After building, you can run the segmentation program from the terminal:</p>
+  <pre><code>
+./GraphCutter input.jpg seed.jpg output.jpg mask.jpg
+  </code></pre>
 
-2. Upgrading `CMake` or compilers could be a good choice if there occurs wired issues while you are configuring or compiling the project.
+  <h4>Where:</h4>
+  <ul>
+    <li><code>input.jpg</code> is the original image.</li>
+    <li><code>seed.jpg</code> is the image with red and green seed labels.</li>
+    <li><code>output.jpg</code> will contain the segmented foreground object.</li>
+    <li><code>mask.jpg</code> will contain the binary segmentation mask.</li>
+  </ul>
 
-3. While running `make install`, `CMake` installs built libraries and executables into the system directories by default. To custom the installation path, please specify the argument `-DCMAKE_INSTALL_PREFIX`. See [CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html) for details.
+  <h4>Example Output (Terminal View):</h4>
+  <pre><code>
+tashir@vict:~/Graph Based Image Segmentation/Input seed$ ../build/GraphCutter input.jpg seed.jpg output.jpg mask.jpg
+Create N-Links: 0.164004s
+Create T-Links: 0.135021s
+Max Flow: 129.082s
+  </code></pre>
 
-## Usage
+  <h3>🧠 API and Library Usage</h3>
 
-### Library
+  <p>If you want to integrate this into your own C++ project, you can use the exposed API:</p>
 
-Both shared and static libraries of *InteractiveGraphCut* are available for end users. After building and installing *InteractiveGraphCut*, you use it simply by including the header `GraphCut.h` and link binary files into your own project. The basic usages of provided APIs are presented as follows:
+  <pre><code>
+static void cutImage(cv::InputArray image, cv::OutputArray result, cv::OutputArray mask,
+    const std::vector<cv::Point>& foreSeeds, const std::vector<cv::Point>& backSeeds,
+    float lambda = 0.01f, float sigma = -1.0, PerfMetric* perfMetric = nullptr);
+  </code></pre>
 
-```
-static void cutImage(cv::InputArray image, cv::OutputArray result, cv::OutputArray mask
-    , const std::vector<cv::Point>& foreSeeds, const std::vector<cv::Point>& backSeeds
-    , float lambda = 0.01f, float sigma = -1.0, PerfMetric* perfMetric = nullptr
-);
-```
+  <h4>Parameters:</h4>
+  <ul>
+    <li><code>image</code>: Input image (color or grayscale)</li>
+    <li><code>result</code>: Output segmented image (foreground only)</li>
+    <li><code>mask</code>: Binary mask of the segmentation result</li>
+    <li><code>foreSeeds</code>: Vector of foreground seed pixel coordinates</li>
+    <li><code>backSeeds</code>: Vector of background seed pixel coordinates</li>
+    <li><code>lambda</code>: Balances the region and boundary terms</li>
+    <li><code>sigma</code>: Controls smoothness (set to -1 to auto-compute)</li>
+    <li><code>perfMetric</code>: Optional pointer to performance logger</li>
+  </ul>
 
-1. The API requires one input image and two output image, where `result` will be the image of foreground object and `mask` will contain a binary bitmap.
-
-2. Both `foreSeeds` and `backSeeds` are the user-specified prior labels mentioned before. They are both a subset of pixel coordinates. And they must not share an intersection.
-
-3. Two hyperparameters `lambda` and `sigma` are provided to tune *InteractiveGraphCut*. `lambda` is known as the coefficient of the region properties term. `sigma` is the variance applied in smooth penalty, usually computed from the input image by default. Leaving both parameters below 0 indicates the default value.
-
-4. The retriever of performance metric `perfMetric` is an optional parameter, given to measure running time in each computational step. Leave `nullptr` to ignore it.
-
-### Executable
-
-The sample code can be compiled into a command-line utility, which has basic features to do image segmentation. Before you feed the target image into *InteractiveGraphCut*, you may need to create a 3-channel prior seed image with the identical size to your input, where red pixel labels foreground, greed pixel labels background and black for the remaining pixels. To run the executable appropriately, read the following usages please:
-
-```
-Usage: GraphCutter <input image> <input seed> <output path> <mask path>
-```
-
-## References
-
-1. [Boykov, Yuri Y., and M-P. Jolly. "Interactive graph cuts for optimal boundary & region segmentation of objects in ND images." Proceedings eighth IEEE international conference on computer vision. ICCV 2001. Vol. 1. IEEE, 2001.](https://cs.uwaterloo.ca/~yboykov/Abstracts/iccv01-abs.html)
-2. [Boykov, Yuri, and Vladimir Kolmogorov. "An experimental comparison of min-cut/max-flow algorithms for energy minimization in vision." IEEE Transactions on Pattern Analysis & Machine Intelligence 9 (2004): 1124-1137.](https://cs.uwaterloo.ca/~yboykov/Abstracts/pami04-abs.shtml)
+</body>
+</html>
