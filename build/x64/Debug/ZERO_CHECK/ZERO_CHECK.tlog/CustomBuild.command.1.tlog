@@ -1,0 +1,10 @@
+^C:\USERS\HP\DESKTOP\INTERACTIVEGRAPHCUT\BUILD\CMAKEFILES\1A321A1EF70A4EB9C724961780B9E8DE\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/hp/Desktop/InteractiveGraphCut -BC:/Users/hp/Desktop/InteractiveGraphCut/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/hp/Desktop/InteractiveGraphCut/build/InteractiveGraphCut.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

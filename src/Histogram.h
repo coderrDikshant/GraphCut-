@@ -1,5 +1,5 @@
-#ifndef _HISTOGRAM_H_
-#define _HISTOGRAM_H_
+#ifndef HISTOGRAM_H
+#define HISTOGRAM_H
 
 #include <iostream>
 #include <math.h>
@@ -144,4 +144,4 @@ typedef Histogram<unsigned char, 1> Histogram1c;
 typedef Histogram<unsigned char, 2> Histogram2c;
 typedef Histogram<unsigned char, 3> Histogram3c;
 
-#endif // _HISTOGRAM_H_
+#endif // HISTOGRAM_H

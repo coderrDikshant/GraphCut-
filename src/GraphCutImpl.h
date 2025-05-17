@@ -1,5 +1,5 @@
-#ifndef _GRAPH_CUT_IMPL_H_
-#define _GRAPH_CUT_IMPL_H_
+#ifndef GRAPH_CUT_IMPL_H
+#define GRAPH_CUT_IMPL_H
 
 #include "MaxFlow.h"
 #include "Histogram.h"
@@ -108,4 +108,4 @@ protected:
 
 };
 
-#endif // _GRAPH_CUT_IMPL_H_
+#endif

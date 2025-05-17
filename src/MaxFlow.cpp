@@ -1,7 +1,8 @@
-
 #include <iostream>
 #include <queue>
 #include "MaxFlow.h"
+#include <algorithm>
+#include <limits>
 
 MaxFlow::MaxFlow(int numOfVertices, Vertex source, Vertex sink)
     : Graph(numOfVertices)

@@ -1,0 +1,8 @@
+C:/Users/hp/Desktop/InteractiveGraphCut/build/CMakeFiles/INSTALL.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/src/CMakeFiles/GRAPH_CUT_SHARED.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/src/CMakeFiles/GRAPH_CUT_STATIC.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/src/CMakeFiles/INSTALL.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/sample/CMakeFiles/GRAPH_CUT_EXE.dir
+C:/Users/hp/Desktop/InteractiveGraphCut/build/sample/CMakeFiles/INSTALL.dir

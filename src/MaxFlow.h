@@ -1,6 +1,5 @@
-
-#ifndef _MAX_FLOW_H_
-#define _MAX_FLOW_H_
+#ifndef MAX_FLOW_H
+#define MAX_FLOW_H
 
 #include <set>
 #include <vector>
@@ -18,7 +17,7 @@ protected:
     std::vector<int>            m_levels;
 
 protected:
-
+    bool bfsFindAugmentingPath(std::vector<Vertex>& parent);
     bool breathFirstSearch();
     bool depthFirstSearch(Vertex u, std::vector<Edge>& path);
 
@@ -37,4 +36,4 @@ public:
 
 };
 
-#endif // _MAX_FLOW_H_
+#endif // MAX_FLOW_H

@@ -1,0 +1,46 @@
+﻿  Building Custom Rule C:/Users/hp/Desktop/InteractiveGraphCut/src/CMakeLists.txt
+  Graph.cpp
+  MaxFlow.cpp
+  GraphCutImpl.cpp
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.h(57,87): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(187,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(228,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(229,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(238,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(239,27): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(250,15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(75,23): warning C4244: 'initializing': conversion from 'double' to 'Histogram<unsigned char,3>::Index', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(73): message : while compiling class template member function 'void Histogram<unsigned char,3>::indexOf(T *,Histogram<T,3>::Index *) const'
+          with
+          [
+              T=unsigned char
+          ]
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(125): message : see reference to function template instantiation 'void Histogram<unsigned char,3>::indexOf(T *,Histogram<T,3>::Index *) const' being compiled
+          with
+          [
+              T=unsigned char
+          ]
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.cpp(167): message : see reference to class template instantiation 'Histogram<unsigned char,3>' being compiled
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(38,30): warning C4244: '=': conversion from 'double' to 'Histogram<unsigned char,3>::Size', possible loss of data
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(29): message : while compiling class template member function 'void Histogram<unsigned char,3>::init(T *,T *,T *)'
+          with
+          [
+              T=unsigned char
+          ]
+C:\Users\hp\Desktop\InteractiveGraphCut\src\Histogram.h(98): message : see reference to function template instantiation 'void Histogram<unsigned char,3>::init(T *,T *,T *)' being compiled
+          with
+          [
+              T=unsigned char
+          ]
+  GraphCut.cpp
+C:\Users\hp\Desktop\InteractiveGraphCut\src\GraphCutImpl.h(57,87): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+  Generating Code...
+  GRAPH_CUT_SHARED.vcxproj -> C:\Users\hp\Desktop\InteractiveGraphCut\build\Debug\GraphCut.dll
